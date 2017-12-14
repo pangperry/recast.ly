@@ -1,35 +1,21 @@
-// var Search = (props) => (
-//   <div className="search-bar form-inline">
-//     <input className="form-control" type="text"/>
-//     <button onClick={function() { 
-//       props.pressSearch({'query': $('.form-control').val()}, props.getVideos); 
-//     }} className="btn hidden-sm-down">
-//       <span className="glyphicon glyphicon-search"></span>
-//     </button>
-//   </div> 
-// );
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = {value: ''};
     this.state = { 
       options: {
         'key': window.YOUTUBE_API_KEY,
         'max': 5,
         'query': '',
-      }
+      },
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleKeyPress = _.debounce(this.handleKeyPress.bind(this), 500);
     this.search = props.pressSearch.bind(this);
   }
 
   handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      this.search(this.state.options, this.props.getVideos);
-    }
+    this.search(this.state.options, this.props.getVideos);
   }
 
   handleChange(event) {
@@ -43,7 +29,7 @@ class Search extends React.Component {
   render() {    
 
     return (
-    <div className="search-bar form-inline">
+    <div className="search-bar form-inline"> 
       <input className="form-control" type="text" value={this.state.options.query} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
         <button onClick={() => { this.search(this.state.options, this.props.getVideos); }} className="btn hidden-sm-down">
          <span className="glyphicon glyphicon-search"></span>

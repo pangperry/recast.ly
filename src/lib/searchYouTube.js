@@ -18,7 +18,6 @@ var searchYouTube = (options, callback) => {
     success: (data) => {
       console.log('success');
       callback(data.items);
-    
     },
     error: (data) => {
       console.log('error');

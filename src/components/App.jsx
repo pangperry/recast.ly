@@ -5,12 +5,14 @@ class App extends React.Component {
     this.selectMainVideo = this.selectMainVideo.bind(this);
     this.getVideos = this.getVideos.bind(this);
 
-    props.searchYouTube({}, this.getVideos);
-
     this.state = { 
       videos: [],
       currentVideo: {'id': '', 'snippet': ''}
     };
+  }
+
+  componentDidMount() {
+    this.props.searchYouTube({}, this.getVideos);
   }
 
   selectMainVideo(videoSelected) {
@@ -23,7 +25,6 @@ class App extends React.Component {
       currentVideo: data[0]
     });
   }
-
 
   // videoHandler()
   render() {

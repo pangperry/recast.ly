@@ -1,4 +1,8 @@
 var searchYouTube = (options, callback) => {
+  options.key = options.key || window.YOUTUBE_API_KEY;
+  options.query = options.query || '';
+  options.max = options.max || 5;
+
   $.ajax({
     type: 'GET',
     url: 'https://www.googleapis.com/youtube/v3/search',
@@ -12,11 +16,13 @@ var searchYouTube = (options, callback) => {
       videoEmbeddable: 'true'
     },
     success: (data) => {
-      alert('success');
-      callback(data);
+      console.log('success');
+      callback(data.items);
+
+      // return data.items;
     },
     error: (data) => {
-      console.log('window: ' + window);
+      console.log('error');
     }
   });
 };

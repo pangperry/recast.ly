@@ -5,8 +5,10 @@ class App extends React.Component {
     this.selectMainVideo = this.selectMainVideo.bind(this);
     this.getVideos = this.getVideos.bind(this);
 
+    props.searchYouTube({}, this.getVideos);
+
     this.state = { 
-      videos: window.exampleVideoData,
+      videos: [],
       currentVideo: window.exampleVideoData[0], 
     };
   }
@@ -17,10 +19,11 @@ class App extends React.Component {
 
   getVideos(data) {
     this.setState({
-      videos: data.items,
-      currentVideo: data.items[0]
+      videos: data,
+      currentVideo: data[0]
     });
   }
+
 
   // videoHandler()
   render() {

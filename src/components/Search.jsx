@@ -1,7 +1,7 @@
 var Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" />
-    <button onClick={function() { props.pressSearch($('.form-control').val(), props.getVideos); }} className="btn hidden-sm-down">
+    <input className="form-control" type="text"/>
+    <button onClick={function() { props.pressSearch({'query': $('.form-control').val()}, props.getVideos); }} className="btn hidden-sm-down">
       <span className="glyphicon glyphicon-search"></span>
     </button>
   </div> 

@@ -9,7 +9,7 @@ class App extends React.Component {
 
     this.state = { 
       videos: [],
-      currentVideo: window.exampleVideoData[0], 
+      currentVideo: {'id': '', 'snippet': ''}
     };
   }
 

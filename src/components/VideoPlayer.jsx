@@ -1,7 +1,7 @@
 var VideoPlayer = (props) => (
   <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">
-      <iframe width="560" height="315" src={`https://www.youtube.com/embed/${props.video.id.videoId}`} frameBorder="0" gesture="media" allow="encrypted-media" allowFullScreen></iframe>    
+      <iframe width="560" height="315" className="embed-responsive-item" src={`https://www.youtube.com/embed/${props.video.id.videoId}`} frameBorder="0" gesture="media" allow="encrypted-media" allowFullScreen></iframe>    
     </div>
     <div className="video-player-details">
       <h3>{props.video.snippet.title}</h3>

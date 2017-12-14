@@ -22,9 +22,14 @@ class Search extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-
-
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.search = props.pressSearch.bind(this);
+  }
+
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.search(this.state.options, this.props.getVideos);
+    }
   }
 
   handleChange(event) {
@@ -39,7 +44,7 @@ class Search extends React.Component {
 
     return (
     <div className="search-bar form-inline">
-      <input className="form-control" type="text" value={this.state.options.query} onChange={this.handleChange}/>
+      <input className="form-control" type="text" value={this.state.options.query} onChange={this.handleChange} onKeyPress={this.handleKeyPress}/>
         <button onClick={() => { this.search(this.state.options, this.props.getVideos); }} className="btn hidden-sm-down">
          <span className="glyphicon glyphicon-search"></span>
         </button>

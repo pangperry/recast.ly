@@ -1,7 +1,9 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.changeMainVideo = this.changeMainVideo.bind(this);
+
+    this.selectMainVideo = this.selectMainVideo.bind(this);
+    this.getVideos = this.getVideos.bind(this);
 
     this.state = { 
       videos: window.exampleVideoData,
@@ -9,8 +11,15 @@ class App extends React.Component {
     };
   }
 
-  changeMainVideo(videoSelected) {
+  selectMainVideo(videoSelected) {
     this.setState({currentVideo: videoSelected});
+  }
+
+  getVideos(data) {
+    this.setState({
+      videos: data.items,
+      currentVideo: data.items[0]
+    });
   }
 
   // videoHandler()
@@ -18,7 +27,8 @@ class App extends React.Component {
     return (
       <div>
         <nav className="navbar">
-          <div className="col-md-6 offset-md-3"> <Search />
+          <div className="col-md-6 offset-md-3"> 
+          <Search pressSearch={window.searchYouTube} getVideos={this.getVideos} />
           </div>
         </nav>
         <div className="row">
@@ -26,7 +36,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.currentVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList changeMainVideo={this.changeMainVideo} videos={this.state.videos} />
+            <VideoList selectMainVideo={this.selectMainVideo} videos={this.state.videos} />
           </div>
         </div>
       </div>

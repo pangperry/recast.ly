@@ -16,7 +16,7 @@ var searchYouTube = (options, callback) => {
       videoEmbeddable: 'true'
     },
     success: (data) => {
-      console.log('success');
+      console.log('success => vides');
       callback(data.items);
     },
     error: (data) => {
@@ -24,5 +24,28 @@ var searchYouTube = (options, callback) => {
     }
   });
 };
+
+var searchComments = (videoId, callback) => {
+  $.ajax({
+    type: 'GET',
+    url: 'https://www.googleapis.com/youtube/v3/commentThreads',
+    dataType: 'json',
+    data: {
+      key: window.YOUTUBE_API_KEY,
+      part: 'snippet, replies',
+      videoId: videoId,
+    },
+    success: (data) => {
+      console.log('success => comments');
+      callback(data.items);
+    },
+    error: (data) => {
+      console.log(data);
+      console.log('error');
+    }
+  });
+};
+
+window.searchComments = searchComments;
 
 window.searchYouTube = searchYouTube;

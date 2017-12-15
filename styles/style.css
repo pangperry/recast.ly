@@ -4,6 +4,22 @@ body {
   background: #f1f1f1;
 }
 
+.comment-list-entry {
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background: lightgrey;
+}
+
+.comment-list-name {
+    font-weight: 800;
+}
+
+.comment-list-text {
+    margin-left: 20px;
+}
+
 .navbar {
   background: #fff;
   margin-bottom: 20px;
